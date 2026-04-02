@@ -1,11 +1,13 @@
-const express = require("express");
-const cors = require("cors");
-require("dotenv").config();
+import express from "express";
+import dotenv from "dotenv";
+import cors from "cors";
 
 const app = express();
 
-app.use(cors());
 app.use(express.json());
+app.use(cors());
+
+dotenv.config();
 
 app.get("/", (req, res) => {
   res.send("API is running 🚀");
@@ -16,3 +18,7 @@ const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });
+
+import userRoutes from "./src/routes/userRoutes.js";
+
+app.use("/api/users", userRoutes);
