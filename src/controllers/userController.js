@@ -30,3 +30,19 @@ export const createUser = async (req, res) => {
     });
   }
 };
+
+export const getAllUsers = async (_req, res) => {
+  try {
+    const users = await prisma.user.findMany();
+
+    res.status(200).json({
+      success: true,
+      data: users,
+    });
+  } catch (error) {
+    res.status(500).json({
+      success: false,
+      message: error.message,
+    });
+  }
+};
