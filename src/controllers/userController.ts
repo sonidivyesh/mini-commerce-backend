@@ -1,8 +1,13 @@
+import { Request, Response } from "express";
 import prisma from "../config/prisma.js";
 
-export const createUser = async (req, res) => {
+export const createUser = async (req: Request, res: Response) => {
   try {
-    const { name, email, password } = req.body;
+    const { name, email, password } = req.body as {
+      name: string;
+      email: string;
+      password: string;
+    };
 
     if (!name || !email || !password) {
       return res.status(400).json({
@@ -23,7 +28,7 @@ export const createUser = async (req, res) => {
       success: true,
       data: user,
     });
-  } catch (error) {
+  } catch (error: any) {
     res.status(500).json({
       success: false,
       message: error.message,
@@ -31,7 +36,7 @@ export const createUser = async (req, res) => {
   }
 };
 
-export const getAllUsers = async (_req, res) => {
+export const getAllUsers = async (_req: Request, res: Response) => {
   try {
     const users = await prisma.user.findMany();
 
@@ -39,7 +44,7 @@ export const getAllUsers = async (_req, res) => {
       success: true,
       data: users,
     });
-  } catch (error) {
+  } catch (error: any) {
     res.status(500).json({
       success: false,
       message: error.message,
