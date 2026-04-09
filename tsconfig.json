@@ -8,5 +8,7 @@
     "esModuleInterop": true,
     "strict": true,
     "skipLibCheck": true
-  }
+  },
+  "include": ["src"], // ✅ ADD THIS
+  "exclude": ["node_modules"] // (optional but good)
 }
