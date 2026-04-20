@@ -1,7 +1,10 @@
 /// <reference types="node" />
 
-import "dotenv/config";
+import dotenv from "dotenv";
 import { defineConfig } from "prisma/config";
+
+// ✅ Force load env manually for Prisma CLI
+dotenv.config();
 
 export default defineConfig({
   schema: "prisma/schema.prisma",
