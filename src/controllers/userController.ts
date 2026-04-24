@@ -1,13 +1,12 @@
 import { Request, Response } from "express";
-import prisma from "../config/prisma.js";
+import {
+  createUserService,
+  getAllUsersService,
+} from "../services/userService.js";
 
 export const createUser = async (req: Request, res: Response) => {
   try {
-    const { name, email, password } = req.body as {
-      name: string;
-      email: string;
-      password: string;
-    };
+    const { name, email, password } = req.body;
 
     if (!name || !email || !password) {
       return res.status(400).json({
@@ -16,13 +15,7 @@ export const createUser = async (req: Request, res: Response) => {
       });
     }
 
-    const user = await prisma.user.create({
-      data: {
-        name,
-        email,
-        password,
-      },
-    });
+    const user = await createUserService({ name, email, password });
 
     res.status(201).json({
       success: true,
@@ -38,7 +31,7 @@ export const createUser = async (req: Request, res: Response) => {
 
 export const getAllUsers = async (_req: Request, res: Response) => {
   try {
-    const users = await prisma.user.findMany();
+    const users = await getAllUsersService();
 
     res.status(200).json({
       success: true,
