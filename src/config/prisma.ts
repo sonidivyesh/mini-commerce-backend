@@ -3,7 +3,7 @@ import { Pool } from "pg";
 import { PrismaPg } from "@prisma/adapter-pg";
 import dotenv from "dotenv";
 
-// ✅ Load correct environment file based on NODE_ENV
+// ✅ Load correct environment file based on NODE_ENV:
 dotenv.config({
   path: `.env.${process.env.NODE_ENV || "development"}`,
 });
