@@ -6,6 +6,7 @@ import {
 
 export const createUser = async (req: Request, res: Response) => {
   try {
+    const x = ;
     const { name, email, password } = req.body;
 
     if (!name || !email || !password) {
